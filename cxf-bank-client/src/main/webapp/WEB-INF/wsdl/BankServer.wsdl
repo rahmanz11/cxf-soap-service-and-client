@@ -1,0 +1,632 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.server.bank.alom/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="BankServerImplService" targetNamespace="http://service.server.bank.alom/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.server.bank.alom/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.server.bank.alom/" version="1.0">
+  <xs:element name="ClientInfo" type="tns:clientInfo"/>
+  <xs:element name="addAmountToAccountBalance" type="tns:addAmountToAccountBalance"/>
+  <xs:element name="addAmountToAccountBalanceResponse" type="tns:addAmountToAccountBalanceResponse"/>
+  <xs:element name="closeAccount" type="tns:closeAccount"/>
+  <xs:element name="closeAccountResponse" type="tns:closeAccountResponse"/>
+  <xs:element name="createAccount" type="tns:createAccount"/>
+  <xs:element name="createAccountResponse" type="tns:createAccountResponse"/>
+  <xs:element name="createClient" type="tns:createClient"/>
+  <xs:element name="createClientResponse" type="tns:createClientResponse"/>
+  <xs:element name="getClient" type="tns:getClient"/>
+  <xs:element name="getClientAccount" type="tns:getClientAccount"/>
+  <xs:element name="getClientAccountResponse" type="tns:getClientAccountResponse"/>
+  <xs:element name="getClientResponse" type="tns:getClientResponse"/>
+  <xs:element name="removeClient" type="tns:removeClient"/>
+  <xs:element name="removeClientResponse" type="tns:removeClientResponse"/>
+  <xs:element name="transferBetweenAccountOfDifferentClient" type="tns:transferBetweenAccountOfDifferentClient"/>
+  <xs:element name="transferBetweenAccountOfDifferentClientResponse" type="tns:transferBetweenAccountOfDifferentClientResponse"/>
+  <xs:element name="transferBetweenAccountOfSameClient" type="tns:transferBetweenAccountOfSameClient"/>
+  <xs:element name="transferBetweenAccountOfSameClientResponse" type="tns:transferBetweenAccountOfSameClientResponse"/>
+  <xs:element name="withdrawAmountFromBankAccount" type="tns:withdrawAmountFromBankAccount"/>
+  <xs:element name="withdrawAmountFromBankAccountResponse" type="tns:withdrawAmountFromBankAccountResponse"/>
+  <xs:complexType name="closeAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="closeAccountResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transferBetweenAccountOfDifferentClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DebitClientId" type="xs:int"/>
+      <xs:element minOccurs="0" name="DebitAccountType" type="xs:string"/>
+      <xs:element minOccurs="0" name="CreditClientId" type="xs:int"/>
+      <xs:element minOccurs="0" name="CreditAccountType" type="xs:string"/>
+      <xs:element minOccurs="0" name="TransferAmount" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transferBetweenAccountOfDifferentClientResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="createClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FirstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="LastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="DateOfBirth" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createClientResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:clientInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="clientInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="dateOfBirth" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeClientResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="createAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int"/>
+      <xs:element minOccurs="0" name="AccountType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createAccountResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:accountInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="accountInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="balance" type="xs:float"/>
+      <xs:element minOccurs="0" name="clientId" type="xs:int"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FirstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="LastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="DateOfBirth" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getClientResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:clientInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addAmountToAccountBalance">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="xs:int"/>
+      <xs:element minOccurs="0" name="Amount" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addAmountToAccountBalanceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transferBetweenAccountOfSameClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int"/>
+      <xs:element minOccurs="0" name="DebitAccountType" type="xs:string"/>
+      <xs:element minOccurs="0" name="CreditAccountType" type="xs:string"/>
+      <xs:element minOccurs="0" name="TransferAmount" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transferBetweenAccountOfSameClientResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="withdrawAmountFromBankAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="xs:int"/>
+      <xs:element minOccurs="0" name="Amount" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="withdrawAmountFromBankAccountResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getClientAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int"/>
+      <xs:element minOccurs="0" name="AccountType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getClientAccountResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:accountInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountNotExistsException" type="tns:AccountNotExistsException"/>
+  <xs:complexType name="AccountNotExistsException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InternalServiceException" type="tns:InternalServiceException"/>
+  <xs:complexType name="InternalServiceException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WithdrawalNotAllowedException" type="tns:WithdrawalNotAllowedException"/>
+  <xs:complexType name="WithdrawalNotAllowedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClientNotExistsException" type="tns:ClientNotExistsException"/>
+  <xs:complexType name="ClientNotExistsException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AmountIncorrectException" type="tns:AmountIncorrectException"/>
+  <xs:complexType name="AmountIncorrectException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClientAlreadyExistsException" type="tns:ClientAlreadyExistsException"/>
+  <xs:complexType name="ClientAlreadyExistsException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClientAccountAvailableException" type="tns:ClientAccountAvailableException"/>
+  <xs:complexType name="ClientAccountAvailableException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountAlreadyExistsException" type="tns:AccountAlreadyExistsException"/>
+  <xs:complexType name="AccountAlreadyExistsException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountTypeNotExistsException" type="tns:AccountTypeNotExistsException"/>
+  <xs:complexType name="AccountTypeNotExistsException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="WithdrawalNotAllowedException">
+    <wsdl:part element="tns:WithdrawalNotAllowedException" name="WithdrawalNotAllowedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferBetweenAccountOfDifferentClient">
+    <wsdl:part element="tns:transferBetweenAccountOfDifferentClient" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createClient">
+    <wsdl:part element="tns:createClient" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ClientAccountAvailableException">
+    <wsdl:part element="tns:ClientAccountAvailableException" name="ClientAccountAvailableException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createAccountResponse">
+    <wsdl:part element="tns:createAccountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createAccount">
+    <wsdl:part element="tns:createAccount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getClient">
+    <wsdl:part element="tns:getClient" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAmountToAccountBalance">
+    <wsdl:part element="tns:addAmountToAccountBalance" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InternalServiceException">
+    <wsdl:part element="tns:InternalServiceException" name="InternalServiceException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getClientAccount">
+    <wsdl:part element="tns:getClientAccount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="closeAccount">
+    <wsdl:part element="tns:closeAccount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeClient">
+    <wsdl:part element="tns:removeClient" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeClientResponse">
+    <wsdl:part element="tns:removeClientResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ClientNotExistsException">
+    <wsdl:part element="tns:ClientNotExistsException" name="ClientNotExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AmountIncorrectException">
+    <wsdl:part element="tns:AmountIncorrectException" name="AmountIncorrectException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ClientAlreadyExistsException">
+    <wsdl:part element="tns:ClientAlreadyExistsException" name="ClientAlreadyExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getClientAccountResponse">
+    <wsdl:part element="tns:getClientAccountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getClientResponse">
+    <wsdl:part element="tns:getClientResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAmountToAccountBalanceResponse">
+    <wsdl:part element="tns:addAmountToAccountBalanceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="withdrawAmountFromBankAccount">
+    <wsdl:part element="tns:withdrawAmountFromBankAccount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferBetweenAccountOfSameClientResponse">
+    <wsdl:part element="tns:transferBetweenAccountOfSameClientResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccountAlreadyExistsException">
+    <wsdl:part element="tns:AccountAlreadyExistsException" name="AccountAlreadyExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccountNotExistsException">
+    <wsdl:part element="tns:AccountNotExistsException" name="AccountNotExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferBetweenAccountOfDifferentClientResponse">
+    <wsdl:part element="tns:transferBetweenAccountOfDifferentClientResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="withdrawAmountFromBankAccountResponse">
+    <wsdl:part element="tns:withdrawAmountFromBankAccountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccountTypeNotExistsException">
+    <wsdl:part element="tns:AccountTypeNotExistsException" name="AccountTypeNotExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferBetweenAccountOfSameClient">
+    <wsdl:part element="tns:transferBetweenAccountOfSameClient" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="closeAccountResponse">
+    <wsdl:part element="tns:closeAccountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createClientResponse">
+    <wsdl:part element="tns:createClientResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BankServer">
+    <wsdl:operation name="closeAccount">
+      <wsdl:input message="tns:closeAccount" name="closeAccount">
+    </wsdl:input>
+      <wsdl:output message="tns:closeAccountResponse" name="closeAccountResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccountNotExistsException" name="AccountNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServiceException" name="InternalServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transferBetweenAccountOfDifferentClient">
+      <wsdl:input message="tns:transferBetweenAccountOfDifferentClient" name="transferBetweenAccountOfDifferentClient">
+    </wsdl:input>
+      <wsdl:output message="tns:transferBetweenAccountOfDifferentClientResponse" name="transferBetweenAccountOfDifferentClientResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WithdrawalNotAllowedException" name="WithdrawalNotAllowedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AmountIncorrectException" name="AmountIncorrectException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ClientNotExistsException" name="ClientNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AccountNotExistsException" name="AccountNotExistsException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createClient">
+      <wsdl:input message="tns:createClient" name="createClient">
+    </wsdl:input>
+      <wsdl:output message="tns:createClientResponse" name="createClientResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ClientAlreadyExistsException" name="ClientAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServiceException" name="InternalServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeClient">
+      <wsdl:input message="tns:removeClient" name="removeClient">
+    </wsdl:input>
+      <wsdl:output message="tns:removeClientResponse" name="removeClientResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ClientAccountAvailableException" name="ClientAccountAvailableException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ClientNotExistsException" name="ClientNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServiceException" name="InternalServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createAccount">
+      <wsdl:input message="tns:createAccount" name="createAccount">
+    </wsdl:input>
+      <wsdl:output message="tns:createAccountResponse" name="createAccountResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccountTypeNotExistsException" name="AccountTypeNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AccountAlreadyExistsException" name="AccountAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ClientNotExistsException" name="ClientNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServiceException" name="InternalServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getClient">
+      <wsdl:input message="tns:getClient" name="getClient">
+    </wsdl:input>
+      <wsdl:output message="tns:getClientResponse" name="getClientResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ClientNotExistsException" name="ClientNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServiceException" name="InternalServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAmountToAccountBalance">
+      <wsdl:input message="tns:addAmountToAccountBalance" name="addAmountToAccountBalance">
+    </wsdl:input>
+      <wsdl:output message="tns:addAmountToAccountBalanceResponse" name="addAmountToAccountBalanceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AmountIncorrectException" name="AmountIncorrectException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AccountNotExistsException" name="AccountNotExistsException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transferBetweenAccountOfSameClient">
+      <wsdl:input message="tns:transferBetweenAccountOfSameClient" name="transferBetweenAccountOfSameClient">
+    </wsdl:input>
+      <wsdl:output message="tns:transferBetweenAccountOfSameClientResponse" name="transferBetweenAccountOfSameClientResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WithdrawalNotAllowedException" name="WithdrawalNotAllowedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AmountIncorrectException" name="AmountIncorrectException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ClientNotExistsException" name="ClientNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AccountNotExistsException" name="AccountNotExistsException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="withdrawAmountFromBankAccount">
+      <wsdl:input message="tns:withdrawAmountFromBankAccount" name="withdrawAmountFromBankAccount">
+    </wsdl:input>
+      <wsdl:output message="tns:withdrawAmountFromBankAccountResponse" name="withdrawAmountFromBankAccountResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:WithdrawalNotAllowedException" name="WithdrawalNotAllowedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AmountIncorrectException" name="AmountIncorrectException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AccountNotExistsException" name="AccountNotExistsException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getClientAccount">
+      <wsdl:input message="tns:getClientAccount" name="getClientAccount">
+    </wsdl:input>
+      <wsdl:output message="tns:getClientAccountResponse" name="getClientAccountResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccountTypeNotExistsException" name="AccountTypeNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ClientNotExistsException" name="ClientNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AccountNotExistsException" name="AccountNotExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServiceException" name="InternalServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BankServerImplServiceSoapBinding" type="tns:BankServer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="closeAccount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="closeAccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="closeAccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccountNotExistsException">
+        <soap:fault name="AccountNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServiceException">
+        <soap:fault name="InternalServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transferBetweenAccountOfDifferentClient">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="transferBetweenAccountOfDifferentClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="transferBetweenAccountOfDifferentClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WithdrawalNotAllowedException">
+        <soap:fault name="WithdrawalNotAllowedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AmountIncorrectException">
+        <soap:fault name="AmountIncorrectException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ClientNotExistsException">
+        <soap:fault name="ClientNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AccountNotExistsException">
+        <soap:fault name="AccountNotExistsException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createClient">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientAlreadyExistsException">
+        <soap:fault name="ClientAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServiceException">
+        <soap:fault name="InternalServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeClient">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientAccountAvailableException">
+        <soap:fault name="ClientAccountAvailableException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ClientNotExistsException">
+        <soap:fault name="ClientNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServiceException">
+        <soap:fault name="InternalServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createAccount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createAccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createAccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccountTypeNotExistsException">
+        <soap:fault name="AccountTypeNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AccountAlreadyExistsException">
+        <soap:fault name="AccountAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ClientNotExistsException">
+        <soap:fault name="ClientNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServiceException">
+        <soap:fault name="InternalServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getClient">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientNotExistsException">
+        <soap:fault name="ClientNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServiceException">
+        <soap:fault name="InternalServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAmountToAccountBalance">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addAmountToAccountBalance">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addAmountToAccountBalanceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AmountIncorrectException">
+        <soap:fault name="AmountIncorrectException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AccountNotExistsException">
+        <soap:fault name="AccountNotExistsException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transferBetweenAccountOfSameClient">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="transferBetweenAccountOfSameClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="transferBetweenAccountOfSameClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WithdrawalNotAllowedException">
+        <soap:fault name="WithdrawalNotAllowedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AmountIncorrectException">
+        <soap:fault name="AmountIncorrectException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ClientNotExistsException">
+        <soap:fault name="ClientNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AccountNotExistsException">
+        <soap:fault name="AccountNotExistsException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="withdrawAmountFromBankAccount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="withdrawAmountFromBankAccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="withdrawAmountFromBankAccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WithdrawalNotAllowedException">
+        <soap:fault name="WithdrawalNotAllowedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AmountIncorrectException">
+        <soap:fault name="AmountIncorrectException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AccountNotExistsException">
+        <soap:fault name="AccountNotExistsException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getClientAccount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getClientAccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getClientAccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccountTypeNotExistsException">
+        <soap:fault name="AccountTypeNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ClientNotExistsException">
+        <soap:fault name="ClientNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AccountNotExistsException">
+        <soap:fault name="AccountNotExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServiceException">
+        <soap:fault name="InternalServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BankServerImplService">
+    <wsdl:port binding="tns:BankServerImplServiceSoapBinding" name="BankServerImplPort">
+      <soap:address location="http://localhost:8080/cxf-bank-server/BankServer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
