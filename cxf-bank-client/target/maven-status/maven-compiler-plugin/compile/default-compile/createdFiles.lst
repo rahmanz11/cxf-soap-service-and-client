@@ -13,6 +13,7 @@ alom\bank\server\service\AccountInfo.class
 alom\bank\server\service\InternalServiceException_Exception.class
 alom\bank\server\service\TransferBetweenAccountOfDifferentClientResponse.class
 alom\bank\server\service\GetClient.class
+alom\bank\client\BankClientService.class
 alom\bank\server\service\AccountNotExistsException.class
 alom\bank\server\service\BankServer.class
 alom\bank\server\service\WithdrawalNotAllowedException_Exception.class
