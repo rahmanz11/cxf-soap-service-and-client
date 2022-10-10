@@ -11,7 +11,7 @@ To generate the project:
 	
 	Maven will display all the values that have been set for the template and ask you to confirm by entering Y. Check the values and confirm. 
 
-To build, deploy and run the tests:
+To build, deploy and run the project:
 ____
     mvn clean install tomcat:run-war
 

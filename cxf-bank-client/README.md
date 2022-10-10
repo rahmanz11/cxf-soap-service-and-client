@@ -11,7 +11,7 @@ ___
 	
 	Maven will display all the values that have been set for the template and ask you to confirm by entering Y. Check the values and confirm. 
 
-To build, deploy and run the project:
+To build, deploy and run the tests:
 ____
     mvn clean install tomcat:run
 
